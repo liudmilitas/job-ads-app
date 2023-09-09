@@ -1,10 +1,17 @@
 import { useParams } from 'react-router';
-import { companies } from '../lib/fake-data';
+import { useState, useEffect } from 'react';
+import { getCompany } from '../lib/graphql/queries.js';
+import JobList from '../components/JobList.js';
 
 function CompanyPage() {
   const { companyId } = useParams();
+  const [company, setCompany] = useState();
+  useEffect(() => {
+    getCompany(companyId).then(setCompany);
+  }, [companyId]);
 
-  const company = companies.find((company) => company.id === companyId);
+  if (!company) return <div>Loading...</div>;
+
   return (
     <div>
       <h1 className="title">
@@ -13,6 +20,10 @@ function CompanyPage() {
       <div className="box">
         {company.description}
       </div>
+      <h2>
+        Jobs at {company.name}
+      </h2>
+      <JobList jobs={company.jobs} />
     </div>
   );
 }

@@ -1,2 +1,3 @@
 # job-board
- graphql course project
+
+graphql course project
