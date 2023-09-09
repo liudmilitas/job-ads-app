@@ -1,3 +1,3 @@
-# job-board
+# GraphQL practice course project 
 
-graphql course project
+Simple full stack job board app built with GraphQL, Node.js, Express, React and SQLite
