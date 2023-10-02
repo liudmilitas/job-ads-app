@@ -1,24 +1,26 @@
-import { GraphQLClient, gql } from 'graphql-request';
+import { GraphQLClient, gql } from "graphql-request";
 
-const client = new GraphQLClient('http://localhost:9000/graphql');
+const client = new GraphQLClient("http://localhost:9000/graphql");
 
 getJobs().then((data) => console.log(data));
 
 export function getJobs() {
-    const query = gql`{
-        jobs {
-            id
-            title
-            date
-            description
-            company {
-                id
-                name
-            }
+  const query = gql`
+    {
+      jobs {
+        id
+        title
+        date
+        description
+        company {
+          id
+          name
         }
-    }`;
+      }
+    }
+  `;
 
-    return client.request(query);
+  return client.request(query);
 }
 
 export async function getJob(id) {
@@ -40,21 +42,35 @@ export async function getJob(id) {
   return job;
 }
 
-  export async function getCompany(id) {
-    const query = gql`
-      query CompanyById($id: ID!) {
-        company(id: $id) {
+export async function createJob({ title, description }) {
+  const mutation = gql`
+    mutation CreateJob($input: CreateJobInput!) {
+      job: createJob(input: $input) {
+        id
+      }
+    }
+  `;
+  const { job } = await client.request(mutation, {
+    input: { title, description },
+  });
+  return job;
+}
+
+export async function getCompany(id) {
+  const query = gql`
+    query CompanyById($id: ID!) {
+      company(id: $id) {
+        id
+        name
+        description
+        jobs {
           id
-          name
-          description
-          jobs {
-            id
-            date
-            title
-          }
+          date
+          title
         }
       }
-    `;
-    const { company } = await client.request(query, { id });
-    return company;
-  }
+    }
+  `;
+  const { company } = await client.request(query, { id });
+  return company;
+}
