@@ -32,7 +32,7 @@ export const resolvers = {
     },
 
     Mutation: {
-        createJob: (_root, { title, description }) => {
+        createJob: (_root, { input: { title, description } }) => {
             const companyId = 'FjcJCHJALA4i'; // hardcoded for now, change when we add auth
             return createJob({ companyId, title, description });
         },
