@@ -7,9 +7,10 @@ export const resolvers = {
         job: async (_root, { id }) => {
             const job = await getJob(id);
             if (!job) {
-                throw notFoundError(`Job with id ${id} not found`);
+              throw notFoundError('No Job found with id ' + id);
             }
-        },
+            return job;
+          },
         jobs: () => getJobs(),
         company: async (_root, { id }) => {
             const company = await getCompany(id);

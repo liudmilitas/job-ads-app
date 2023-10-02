@@ -11,9 +11,9 @@ function JobPage() {
   useEffect(() => {
     getJob(jobId).then(setJob);
   }, [jobId]);
-
+  console.log('job:', job);
   if (!job) return <div>Loading...</div>;
-  
+
   return (
     <div>
       <h1 className="title is-2">
