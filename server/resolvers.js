@@ -1,4 +1,4 @@
-import { createJob, getJob, getJobs, getJobsByCompany } from './db/jobs.js';
+import { createJob, getJob, getJobs, getJobsByCompany, deleteJob, updateJob } from './db/jobs.js';
 import { getCompany } from './db/companies.js';
 import { GraphQLError } from 'graphql';
 
@@ -35,6 +35,10 @@ export const resolvers = {
         createJob: (_root, { input: { title, description } }) => {
             const companyId = 'FjcJCHJALA4i'; // hardcoded for now, change when we add auth
             return createJob({ companyId, title, description });
+        },
+        deleteJob: (_root, { id }) =>  deleteJob(id),
+        updateJob: (_root, { input: { id, title, description } }) => {
+            return updateJob({ id, title, description });
         },
     }
     

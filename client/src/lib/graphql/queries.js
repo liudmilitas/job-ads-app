@@ -56,6 +56,18 @@ export async function createJob({ title, description }) {
   return job;
 }
 
+export async function deleteJob(id) {
+  const mutation = gql`
+    mutation DeleteJob($id: ID!) {
+      job: deleteJob(id: $id) {
+        id
+      }
+    }
+  `;
+  const { job } = await client.request(mutation, { id });
+  return job;
+}
+
 export async function getCompany(id) {
   const query = gql`
     query CompanyById($id: ID!) {
