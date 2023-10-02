@@ -1,4 +1,4 @@
-import { getJob, getJobs, getJobsByCompany } from './db/jobs.js';
+import { createJob, getJob, getJobs, getJobsByCompany } from './db/jobs.js';
 import { getCompany } from './db/companies.js';
 import { GraphQLError } from 'graphql';
 
@@ -29,6 +29,13 @@ export const resolvers = {
     Company: {
         jobs: (company) => getJobsByCompany(company.id),
     },
+
+    Mutation: {
+        createJob: (_root, { title, description }) => {
+            const companyId = 'FjcJCHJALA4i'; // hardcoded for now, change when we add auth
+            return createJob({ companyId, title, description });
+        },
+    }
     
 };
 
