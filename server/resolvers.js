@@ -32,7 +32,10 @@ export const resolvers = {
     },
 
     Mutation: {
-        createJob: (_root, { input: { title, description } }) => {
+        createJob: (_root, { input: { title, description } }, { auth }) => {
+            if (!auth) {
+                throw unauthorizedError('You must be signed in to create a job');
+            }
             const companyId = 'FjcJCHJALA4i'; // hardcoded for now, change when we add auth
             return createJob({ companyId, title, description });
         },
@@ -47,6 +50,12 @@ export const resolvers = {
 function notFoundError(error) {
     return new GraphQLError(error, 
         { extensions: { code: '404_NOT_FOUND' }}
+    );
+}
+
+function unauthorizedError(error) {
+    return new GraphQLError(error, 
+        { extensions: { code: 'NOT AUTHORIRED FOR THIS ACTION' }}
     );
 }
 
