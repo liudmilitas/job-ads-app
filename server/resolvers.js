@@ -39,9 +39,25 @@ export const resolvers = {
             const companyId = 'FjcJCHJALA4i'; // hardcoded for now, change when we add auth
             return createJob({ companyId, title, description });
         },
-        deleteJob: (_root, { id }) =>  deleteJob(id),
-        updateJob: (_root, { input: { id, title, description } }) => {
-            return updateJob({ id, title, description });
+        deleteJob: async (_root, { id }, { user }) =>  {
+            if (!user) {
+                throw unauthorizedError('You must be signed in to delete a job');
+            }
+            const job =  await deleteJob(id, user.companyId);
+            if (!job) {
+                throw notFoundError(`No job found with id ${id}`);
+            }
+            return job;
+        },
+        updateJob: async (_root, { input: { id, title, description }}, { user }) => {
+            if (!user) {
+                throw unauthorizedError('You must be signed in to update a job');
+            }
+            const job = await updateJob({ id, companyId: user.companyId, title, description });
+            if (!job) {
+                throw notFoundError(`No job found with id ${id}`);
+            }
+            return job;
         },
     }
     
