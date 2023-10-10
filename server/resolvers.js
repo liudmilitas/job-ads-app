@@ -32,8 +32,8 @@ export const resolvers = {
     },
 
     Mutation: {
-        createJob: (_root, { input: { title, description } }, { auth }) => {
-            if (!auth) {
+        createJob: (_root, { input: { title, description } }, { user }) => {
+            if (!user) {
                 throw unauthorizedError('You must be signed in to create a job');
             }
             const companyId = 'FjcJCHJALA4i'; // hardcoded for now, change when we add auth
