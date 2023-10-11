@@ -1,5 +1,6 @@
-import { GraphQLClient, gql } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
 import { getAccessToken } from "../auth";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 const client = new GraphQLClient("http://localhost:9000/graphql", {
   headers: () => {
@@ -11,6 +12,11 @@ const client = new GraphQLClient("http://localhost:9000/graphql", {
     }
     return {};
   },
+});
+
+const apolloClient = new ApolloClient({
+  uri: "http://localhost:9000/graphql",
+  cache: new InMemoryCache(),
 });
 
 getJobs().then((data) => console.log(data));
