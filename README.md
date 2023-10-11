@@ -1,3 +1,4 @@
-# GraphQL practice course project 
+<h1 align="center">Job Ads App - GraphQL course project</h1>
 
-Simple full stack job board app built with GraphQL, Node.js, Express, React and SQLite
+## About
+Fullstack job ads app built with GraphQL, Apollo Client, Node.js, Express, React and Bulma CSS
