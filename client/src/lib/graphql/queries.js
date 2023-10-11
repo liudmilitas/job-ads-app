@@ -21,7 +21,7 @@ const apolloClient = new ApolloClient({
 
 getJobs().then((data) => console.log(data));
 
-export function getJobs() {
+export async function getJobs() {
   const query = gql`
     {
       jobs {
@@ -36,8 +36,8 @@ export function getJobs() {
       }
     }
   `;
-
-  return client.request(query);
+  const { data } = await apolloClient.query({query});
+  return data.jobs;
 }
 
 export async function getJob(id) {
@@ -55,8 +55,11 @@ export async function getJob(id) {
       }
     }
   `;
-  const { job } = await client.request(query, { id });
-  return job;
+  const { data } = await apolloClient.query({
+    query,
+    variables: { id },
+  });
+  return data.job;
 }
 
 export async function createJob({ title, description }) {
@@ -100,6 +103,9 @@ export async function getCompany(id) {
       }
     }
   `;
-  const { company } = await client.request(query, { id });
-  return company;
+  const { data } = await apolloClient.query({
+    query,
+    variables: { id },
+  });
+  return data.company;
 }

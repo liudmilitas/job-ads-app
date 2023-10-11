@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 function HomePage() {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
-    getJobs().then((data) => setJobs(data.jobs));
+    getJobs().then(setJobs);
   }, []);
 
   return (

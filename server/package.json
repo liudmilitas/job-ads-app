@@ -7,7 +7,6 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.5",
     "@apollo/server": "^4.9.3",
     "better-sqlite3": "^8.3.0",
     "cors": "^2.8.5",
