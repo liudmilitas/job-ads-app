@@ -11,26 +11,26 @@ function NavBar({ user, onLogout }) {
   return (
     <nav className="navbar">
       <div className="navbar-start">
-        <Link className="navbar-item" to="/">
-          Home
+        <Link className="navbar-item is-size-5" to="/">
+          Jobssons 👩‍💻
         </Link>
       </div>
       {loggedIn ? (
         <div className="navbar-end">
-          <span className="navbar-item has-text-grey">
+          <span className="navbar-item is-transparent">
             {user.email}
           </span>
-          <Link className="navbar-item" to="/jobs/new">
-            Post Job
+          <Link className="navbar-item is-transparent" to="/jobs/new">
+            Create Job
           </Link>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a className="navbar-item" onClick={handleLogout}>
-            Logout
+          <a className="navbar-item is-transparent" onClick={handleLogout}>
+            Log Out
           </a>
         </div>
       ) : (
         <div className="navbar-end">
-          <Link className="navbar-item" to="/login">
+          <Link className="navbar-item is-transparent" to="/login">
             Login
           </Link>
         </div>

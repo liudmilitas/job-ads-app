@@ -17,7 +17,7 @@ function JobItem({ job }) {
     : job.title;
   return (
     <li className="media">
-      <div className="media-left has-text-grey">
+      <div className="media-left has-text-gray-light">
         {formatDate(job.date)}
       </div>
       <div className="media-content">
