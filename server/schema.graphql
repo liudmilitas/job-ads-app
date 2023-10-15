@@ -1,10 +1,14 @@
 type Query {
   job(id: ID!): Job
-  jobs(limit: Int, offset: Int): [Job]
+  jobs(limit: Int, offset: Int): JobSubList
   company(id: ID!): Company
   companies: [Company]
 }
 
+type JobSubList {
+  items: [Job!]!
+  count: Int!
+}
 
 """Represents a job posting"""
 type Job {
@@ -22,6 +26,8 @@ type Company {
   description: String
   jobs: [Job]
 }
+
+
 
 type Mutation {
   createJob(input: CreateJobInput!): Job
