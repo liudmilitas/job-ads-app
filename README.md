@@ -1,7 +1,7 @@
 <h1 align="center">Job Ads App - GraphQL course project</h1>
 
 ## About
-A fullstack app built with GraphQL, Apollo Client, Node.js, Express, React and Bulma CSS
+A full stack app built with GraphQL, Apollo Client, TypeScript, Node.js, Express, React and Bulma CSS
 
 ### Key Features
  - JWT authentication, authorization, secured API routes
