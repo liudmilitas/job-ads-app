@@ -11,7 +11,7 @@ function HomePage() {
   return (
     <div>
       <h1 className="title">
-        New Job Ads
+        Newest Jobs
       </h1>
       <JobList jobs={jobs} />
     </div>
