@@ -12,7 +12,7 @@ function NavBar({ user, onLogout }) {
     <nav className="navbar">
       <div className="navbar-start">
         <Link className="navbar-item is-size-5" to="/">
-          Jobssons 👩‍💻
+          Inbead 👩‍💻
         </Link>
       </div>
       {loggedIn ? (

@@ -1,5 +1,12 @@
 import { getAccessToken } from "../auth";
-import { ApolloClient, ApolloLink, InMemoryCache, concat, createHttpLink, gql } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloLink,
+  InMemoryCache,
+  concat,
+  createHttpLink,
+  gql,
+} from "@apollo/client";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:9000/graphql",
@@ -7,17 +14,17 @@ const httpLink = createHttpLink({
 
 const authLink = new ApolloLink((operation, forward) => {
   const accessToken = getAccessToken();
-  if(accessToken){
+  if (accessToken) {
     operation.setContext({
       headers: {
-        authorization: `Bearer ${accessToken}`
-      }
+        authorization: `Bearer ${accessToken}`,
+      },
     });
   }
   return forward(operation);
 });
 
-const apolloClient = new ApolloClient({
+export const apolloClient = new ApolloClient({
   link: concat(authLink, httpLink),
   cache: new InMemoryCache(),
 });
@@ -66,7 +73,20 @@ const jobByIdQuery = gql`
   ${jobDetailFragment}
 `;
 
-
+export const companyByIdQuery = gql`
+  query CompanyById($id: ID!) {
+    company(id: $id) {
+      id
+      name
+      description
+      jobs {
+        id
+        date
+        title
+      }
+    }
+  }
+`;
 
 export async function getJob(id) {
   const { data } = await apolloClient.query({
@@ -112,26 +132,4 @@ export async function deleteJob(id) {
     variables: { input: id },
   });
   return data.job;
-}
-
-export async function getCompany(id) {
-  const query = gql`
-    query CompanyById($id: ID!) {
-      company(id: $id) {
-        id
-        name
-        description
-        jobs {
-          id
-          date
-          title
-        }
-      }
-    }
-  `;
-  const { data } = await apolloClient.query({
-    query,
-    variables: { id },
-  });
-  return data.company;
 }
