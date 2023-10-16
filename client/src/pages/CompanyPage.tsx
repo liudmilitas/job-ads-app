@@ -1,10 +1,11 @@
 import { useParams } from "react-router";
-import JobList from "../components/JobList.js";
-import { useCompany } from "../lib/graphql/hooks.js";
+import JobList from "../components/JobList";
+import { useCompany } from "../lib/graphql/hooks";
+import React from "react";
 
 function CompanyPage() {
   const { companyId } = useParams();
-  const { company, loading, error } = useCompany(companyId);
+  const { company, loading, error } = useCompany(companyId || "");
 
   if (loading) return <div>Loading...</div>;
 

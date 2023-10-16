@@ -1,6 +1,7 @@
 import { useState } from "react";
 import JobList from "../components/JobList";
 import { useJobs } from "../lib/graphql/hooks";
+import React from "react";
 
 const JOBS_PER_PAGE = 5;
 

@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
-import { logout } from '../lib/auth';
+import { User, logout } from '../lib/auth';
+import React from 'react';
 
-function NavBar({ user, onLogout }) {
+interface NavBarProps {
+  user: User | null;
+  onLogout: () => void;
+}
+
+function NavBar({ user, onLogout }: NavBarProps) {
   const handleLogout = () => {
     logout();
     onLogout();
@@ -18,7 +24,7 @@ function NavBar({ user, onLogout }) {
       {loggedIn ? (
         <div className="navbar-end">
           <span className="navbar-item is-transparent">
-            {user.email}
+            {user?.email}
           </span>
           <Link className="navbar-item is-transparent" to="/jobs/new">
             Create Job

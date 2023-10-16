@@ -1,6 +1,3 @@
-// Disclaimer: This example keeps the access token in LocalStorage just because
-// it's simpler, but in a real application you may want to use cookies instead
-// for better security. Also, it doesn't handle token expiration.
 import jwtDecode from 'jwt-decode';
 
 const API_URL = 'http://localhost:9000';
@@ -11,7 +8,12 @@ export function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
-export async function login(email, password) {
+export interface User {
+  id: string;
+  email: string;
+}
+
+export async function login(email: string, password: string): Promise<User | null> {
   const response = await fetch(`${API_URL}/login`, {
     method: 'POST',
     headers: {
@@ -27,7 +29,7 @@ export async function login(email, password) {
   return getUserFromToken(token);
 }
 
-export function getUser() {
+export function getUser(): User | null {
   const token = getAccessToken();
   if (!token) {
     return null;
@@ -39,8 +41,13 @@ export function logout() {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
 }
 
-function getUserFromToken(token) {
-  const claims = jwtDecode(token);
+interface JwtClaims {
+  sub: string;
+  email: string;
+}
+
+function getUserFromToken(token: string): User {
+  const claims = jwtDecode<JwtClaims>(token);
   return {
     id: claims.sub,
     email: claims.email,
