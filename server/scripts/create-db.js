@@ -1,4 +1,4 @@
-import { connection } from '../db/connection.js';
+import { connection } from '../src/db/connection.js';
 
 const { schema } = connection;
 
@@ -43,6 +43,27 @@ await connection.table('company').insert([
 ]);
 
 await connection.table('job').insert([
+  {
+    id: 'ALLNJMXFax6n',
+    companyId: 'FjcJCHJALA4i',
+    title: 'Bonus Job',
+    description: 'Secret job for a secret witch (to test pagination). Shh!',
+    createdAt: '2023-09-23T11:00:00.000Z',
+  },
+  {
+    id: '6mA0SADxvS1R',
+    companyId: 'Gu7QW9LcnF5d',
+    title: 'Customer Service Manager',
+    description: 'We are looking for a capable manager with excellent social competence.',
+    createdAt: '2023-09-24T11:00:00.000Z',
+  },
+  {
+    id: '6mA05AOKIS1R',
+    companyId: 'Gu7QW9LcnF5d',
+    title: 'IT consultant',
+    description: 'We are looking for a part-time worker student IT consultant.',
+    createdAt: '2023-09-25T11:00:00.000Z',
+  },
   {
     id: 'f3YzmnBZpK0o',
     companyId: 'FjcJCHJALA4i',

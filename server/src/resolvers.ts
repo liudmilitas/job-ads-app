@@ -84,16 +84,16 @@ export const resolvers = {
   },
 };
 
-function notFoundError(error) {
+function notFoundError(error: string) {
   return new GraphQLError(error, { extensions: { code: "404_NOT_FOUND" } });
 }
 
-function unauthorizedError(error) {
+function unauthorizedError(error: string) {
   return new GraphQLError(error, {
     extensions: { code: "NOT AUTHORIRED FOR THIS ACTION" },
   });
 }
 
-function toISODate(date) {
+function toISODate(date: string) {
   return date.slice(0, "yyyy-mm-dd".length);
 }
