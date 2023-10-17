@@ -9,8 +9,9 @@ import {
 } from "./db/jobs.js";
 import { getCompany } from "./db/companies.js";
 import { GraphQLError } from "graphql";
+import { Resolvers } from "./generated/schema.js";
 
-export const resolvers = {
+export const resolvers: Resolvers = {
   Query: {
     job: async (_root, { id }) => {
       const job = await getJob(id);
