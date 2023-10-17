@@ -18,7 +18,7 @@ function HomePage() {
 
   return (
     <div>
-      <h1 className="title">Newest Jobs</h1>
+      <h2 className="title">Newest Jobs</h2>
       <JobList jobs={jobs.items} />
       <nav
         className="pagination is-centered"
@@ -32,7 +32,7 @@ function HomePage() {
         >
           Prev page
         </button>
-        <span>Page {currentPage}</span>
+        <span className="mx-4">Page {currentPage}</span>
         <button
           disabled={jobs.items.length < JOBS_PER_PAGE}
           className="button is-primary"
