@@ -35,7 +35,7 @@ function JobItem({ job }: JobItemProps) {
     : job.title;
   return (
     <li className="media">
-      <div className="media-left has-text-gray-light">
+      <div className="media-left has-text-gray-light tag">
         {formatDate(job.date)}
       </div>
       <div className="media-content">

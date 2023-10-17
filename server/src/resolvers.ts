@@ -10,6 +10,13 @@ import {
 import { getCompany } from "./db/companies.js";
 import { GraphQLError } from "graphql";
 import { Resolvers } from "./generated/schema.js";
+import DataLoader from 'dataloader';
+import { CompanyEntity, UserEntity } from './db/types.js';
+
+export interface ResolverContext {
+  companyLoader: DataLoader<string, CompanyEntity, string>;
+  user?: UserEntity;
+}
 
 export const resolvers: Resolvers = {
   Query: {

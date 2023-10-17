@@ -23,7 +23,7 @@ function NavBar({ user, onLogout }: NavBarProps) {
       </div>
       {loggedIn ? (
         <div className="navbar-end">
-          <span className="navbar-item is-transparent">
+          <span className="navbar-item">
             {user?.email}
           </span>
           <Link className="navbar-item is-transparent" to="/jobs/new">
