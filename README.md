@@ -7,3 +7,6 @@ A full stack app built with GraphQL, Apollo Client, TypeScript, Node.js, Express
  - JWT authentication, authorization, secured API routes
  - Apollo Client caching for local state management
  - DataLoader for batching GraphQL requests
+ - Codgen for generating TypeScript Types from GraphQL schema
+
+### Local setup
