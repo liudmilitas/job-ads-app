@@ -5,8 +5,8 @@ import {
   InMemoryCache,
   concat,
   createHttpLink,
-  gql,
 } from "@apollo/client";
+import { graphql } from '../../generated';
 
 const httpLink = createHttpLink({
   uri: "http://localhost:9000/graphql",
@@ -29,7 +29,7 @@ export const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const jobsQuery = gql`
+export const jobsQuery = graphql(`
   query JobsQuery($limit: Int, $offset: Int) {
     jobs(limit: $limit, offset: $offset) {
       items {
@@ -43,9 +43,10 @@ export const jobsQuery = gql`
       }
     }
   }
-`;
+`);
 
-const jobDetailFragment = gql`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const jobDetailFragment = graphql(`
   fragment JobDetail on Job {
     id
     date
@@ -56,18 +57,17 @@ const jobDetailFragment = gql`
     }
     description
   }
-`;
+`);
 
-export const jobByIdQuery = gql`
+export const jobByIdQuery = graphql(`
   query JobById($id: ID!) {
     job(id: $id) {
       ...JobDetail
     }
   }
-  ${jobDetailFragment}
-`;
+`);
 
-export const companyByIdQuery = gql`
+export const companyByIdQuery = graphql(`
   query CompanyById($id: ID!) {
     company(id: $id) {
       id
@@ -80,28 +80,27 @@ export const companyByIdQuery = gql`
       }
     }
   }
-`;
+`);
 
-export const createJobMutation = gql`
+export const createJobMutation = graphql(`
     mutation CreateJob($input: CreateJobInput!) {
       job: createJob(input: $input) {
         ...JobDetail
       }
     }
-    ${jobDetailFragment}
-  `;
+`);
 
 export async function deleteJob(id) {
-  const mutation = gql`
+  const mutation = graphql(`
     mutation DeleteJob($id: ID!) {
       job: deleteJob(id: $id) {
         id
       }
     }
-  `;
+  `);
   const { data } = await apolloClient.mutate({
     mutation,
-    variables: { input: id },
+    variables: { id },
   });
   return data.job;
 }

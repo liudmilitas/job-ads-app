@@ -1,5 +1,5 @@
 {
-  "name": "job-board-server",
+  "name": "job-app-server",
   "private": true,
   "license": "MIT",
   "type": "module",
