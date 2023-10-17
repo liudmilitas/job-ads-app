@@ -31,7 +31,7 @@ export function useJobs(limit?: number, offset?: number) {
 }
 
 export function useCreateJob() {
-  const [mutate, { loading }] = useMutation(createJobMutation);
+  const [mutate, { loading }] = useMutation(createJobMutation as any);
 
   const createJob = async (title: string, description?: string) => {
     const {

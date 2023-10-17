@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { formatDate } from '../lib/formatters';
-import React from 'react';
+import { Link } from "react-router-dom";
+import { formatDate } from "../lib/formatters";
+import React from "react";
 
 interface Job {
   id: string;
@@ -30,18 +30,14 @@ interface JobItemProps {
 }
 
 function JobItem({ job }: JobItemProps) {
-  const title = job.company
-    ? `${job.title} at ${job.company.name}`
-    : job.title;
+  const title = job.company ? `${job.title} at ${job.company.name}` : job.title;
   return (
     <li className="media">
       <div className="media-left has-text-gray-light tag">
         {formatDate(job.date)}
       </div>
       <div className="media-content">
-        <Link to={`/jobs/${job.id}`}>
-          {title}
-        </Link>
+        <Link to={`/jobs/${job.id}`}>{title}</Link>
       </div>
     </li>
   );

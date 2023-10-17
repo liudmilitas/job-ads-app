@@ -6,7 +6,7 @@ import {
   concat,
   createHttpLink,
 } from "@apollo/client";
-import { graphql } from '../../generated';
+import { graphql } from "../../generated";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:9000/graphql",
@@ -83,11 +83,11 @@ export const companyByIdQuery = graphql(`
 `);
 
 export const createJobMutation = graphql(`
-    mutation CreateJob($input: CreateJobInput!) {
-      job: createJob(input: $input) {
-        ...JobDetail
-      }
+  mutation CreateJob($input: CreateJobInput!) {
+    job: createJob(input: $input) {
+      ...JobDetail
     }
+  }
 `);
 
 export async function deleteJob(id) {

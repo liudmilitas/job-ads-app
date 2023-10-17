@@ -1,5 +1,5 @@
 import { MouseEventHandler, useState } from "react";
-import { useCreateJob } from '../lib/graphql/hooks';
+import { useCreateJob } from "../lib/graphql/hooks";
 import { useNavigate } from "react-router";
 import React from "react";
 
@@ -44,8 +44,11 @@ function CreateJobPage() {
           </div>
           <div className="field">
             <div className="control">
-              <button className="button is-link" disabled={loading}
-              onClick={handleSubmit}>
+              <button
+                className="button is-link"
+                disabled={loading}
+                onClick={handleSubmit}
+              >
                 Create Job
               </button>
             </div>

@@ -1,0 +1,7 @@
+/build/
+/node_modules/
+/src/generated/
+
+# Ignore artifacts:
+build
+coverage

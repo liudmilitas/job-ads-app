@@ -9,7 +9,7 @@ function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const { jobs, loading, error } = useJobs(
     JOBS_PER_PAGE,
-    (currentPage - 1) * JOBS_PER_PAGE
+    (currentPage - 1) * JOBS_PER_PAGE,
   );
 
   if (loading) return <div>Loading...</div>;

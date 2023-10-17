@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { User, logout } from '../lib/auth';
-import React from 'react';
+import { Link } from "react-router-dom";
+import { User, logout } from "../lib/auth";
+import React from "react";
 
 interface NavBarProps {
   user: User | null;
@@ -18,14 +18,12 @@ function NavBar({ user, onLogout }: NavBarProps) {
     <nav className="navbar">
       <div className="navbar-start">
         <Link className="navbar-item is-size-5" to="/">
-        👩‍💻 Inbead
+          👩‍💻 Inbead
         </Link>
       </div>
       {loggedIn ? (
         <div className="navbar-end">
-          <span className="navbar-item">
-            {user?.email}
-          </span>
+          <span className="navbar-item">{user?.email}</span>
           <Link className="navbar-item is-transparent" to="/jobs/new">
             Create Job
           </Link>

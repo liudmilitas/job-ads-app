@@ -7,7 +7,7 @@ import React from "react";
 function JobPage() {
   const { jobId } = useParams();
   const { job, loading, error } = useJob(jobId || "");
-  
+
   if (loading) return <div>Loading...</div>;
 
   if (error) return <div>404 NOT FOUND</div>;

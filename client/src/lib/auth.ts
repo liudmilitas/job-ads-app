@@ -1,8 +1,8 @@
-import jwtDecode from 'jwt-decode';
+import jwtDecode from "jwt-decode";
 
-const API_URL = 'http://localhost:9000';
+const API_URL = "http://localhost:9000";
 
-const ACCESS_TOKEN_KEY = 'accessToken';
+const ACCESS_TOKEN_KEY = "accessToken";
 
 export function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -13,11 +13,14 @@ export interface User {
   email: string;
 }
 
-export async function login(email: string, password: string): Promise<User | null> {
+export async function login(
+  email: string,
+  password: string,
+): Promise<User | null> {
   const response = await fetch(`${API_URL}/login`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
   });
