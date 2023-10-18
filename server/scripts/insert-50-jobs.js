@@ -2,6 +2,7 @@ import { connection } from '../db/connection.js';
 
 // Add 50 jobs to the database
 // A script for testing pagination
+// node scripts/insert-50-jobs.js
 
 const INTERVAL = 4 * 60 * 60 * 1000; // 4h
 const START_TIME = new Date('2023-01-31T09:00:00.000Z').getTime();

@@ -1,5 +1,8 @@
 import { connection } from '../src/db/connection.js';
 
+// A script for creating the database, run to remove test data
+// node scripts/create-db.js
+
 const { schema } = connection;
 
 await schema.dropTableIfExists('user');
