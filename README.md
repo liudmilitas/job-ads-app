@@ -14,12 +14,12 @@ A full stack app built with GraphQL, Apollo Client, TypeScript, Node.js, Express
 ### Local setup
 
 ```bash
-# Install dependencies (for .\server and .\client folders respectively)
+# Install dependencies (for \server and \client folders respectively)
 npm install
-# Run codegen and serve API on localhost:9000 (from .\server)
+# Run codegen and serve API on localhost:9000 (from \server)
 npm run codegen
 npm run start
-# Start client on localhost:3000
+# Start client on localhost:3000 (from \client)
 npm run start
 # Test login credentials
 username: kiki@delivery.io
